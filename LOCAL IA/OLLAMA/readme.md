@@ -155,13 +155,14 @@ docker rm ollama
 
 # 4. My Installed Models
 
-| Model              | Size   | Best use                                |
-| ------------------ | ------ | --------------------------------------- |
-| `qwen2.5-coder:7b` | 4.7 GB | **Main coding assistant**               |
-| `qwen2.5-coder:3b` | 1.9 GB | Fast coding / lightweight machine       |
-| `gemma3:4b`        | 3.3 GB | General AI, reasoning, multimodal tasks |
-| `phi4-mini`        | 2.5 GB | Lightweight general-purpose AI          |
-| `dolphin-phi`      | 1.6 GB | Lightweight experimentation             |
+| Model              | Size                         | **⭐ Meilleur usage**                          | Best use                                                                                                                                                                                                                       |
+| ------------------ | ---------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `qwen2.5-coder:7b` | 4.7 GB                       | ⭐⭐⭐⭐⭐ Assistant de développement principal    | **Ton modèle principal pour développer, corriger du code, expliquer une erreur, créer des composants, API, SQL, tests, etc. Qwen2.5-Coder est spécifiquement entraîné pour le code et supporte un contexte jusqu'à 128K.**     |
+| `qwen2.5-coder:3b` | 1.9 GB                       | ⭐⭐⭐⭐ Codage rapide                            | À utiliser quand tu veux une réponse rapide et que la tâche n'est pas complexe : petites fonctions, HTML/CSS, petits composants Angular/React, commandes, regex, etc.                                                          |
+| `gemma3:4b`        | 3.3 GB                       | ⭐⭐⭐⭐ Assistant général + images               | Plus adapté que Qwen Coder pour discuter, résumer, expliquer un concept, analyser du texte et certaines tâches multimodales. Gemma 3 apporte notamment la compréhension d'images et un long contexte.                          |
+| `phi4-mini`        | 2.5 GB                       | ⭐⭐⭐⭐ Questions générales / raisonnement léger | Bon petit modèle pour les questions générales, explications techniques, raisonnement simple et tâches où tu ne veux pas charger un 7B.                                                                                         |
+| `dolphin-phi`      | 1.6 GB                       | ⭐⭐ Expérimentation / tâches très légères      |                                                                                                                                                                                                                                |
+| StarCoder2:7B      | ~4–5 GB selon quantification | ⭐⭐⭐⭐ Complétion de code                       | Très intéressant pour la génération/complétion de code, notamment le Fill-in-the-Middle : compléter du code au milieu d'un fichier. Mais il est conçu comme modèle de code plutôt que comme assistant conversationnel général. |
 
 ### Quick selection
 
@@ -436,3 +437,28 @@ curl http://localhost:11434/api/chat
 
 **For a developer:**  
 `Ollama + Qwen Coder + Docker + Spring Boot/Angular/Laravel + Claude Code` is a practical foundation for experimenting with **local AI-assisted development**.
+
+## CONFIGURATION FILE
+
+```yaml
+name: Main Config
+version: 1.0.0
+schema: v1
+models:
+  - name: Qwen
+    provider: Ollama
+    model: qwen2.5-coder:7b
+    apiBase: http://192.168.0.39:11434
+    roles:
+      - chat
+      - edit
+      - apply
+  - name: Autodetect
+    provider: ollama
+    model: AUTODETECT
+    roles:
+      - chat
+      - edit
+      - apply
+      - autocomplete
+```
