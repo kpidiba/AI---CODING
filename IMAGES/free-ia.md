@@ -8,3 +8,9 @@
 | **Ideogram**         | ~10 images/week    | Accurate text in images          | Yes             |
 | **Perchance**        | Unlimited          | Quick, no-signup generation      | No              |
 | **Stable Diffusion** | Unlimited (local)  | Full control, open-source        | No (if local)   |
+
+- https://felo.ai/tools/grok-image-generator
+
+- https://notegpt.io/ai-image-generator
+
+- https://www.meta.ai/
